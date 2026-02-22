@@ -7,7 +7,8 @@ using namespace std;
 
 struct Vault{
     string name;
-    string *items;
+    int nrItems;
+    string *items = new string [nrItems];
     //destructor for items
     ~Vault(){
         if (items)
@@ -17,7 +18,7 @@ struct Vault{
 };
 
 void inputUser(Vault *);
-void outputStudent(Vault *);
+void displayVaults(Vault *);
 
 int main(){
     int numVaults;
@@ -30,36 +31,43 @@ int main(){
         inputUser(&roster[i]);
     }
 
+    for (int i = 0; i < numVaults; i++){
+        displayVaults(&roster[i]);
+    }
+
+    delete [] roster;
+
     return 0;
 
 }
 
 void inputUser(Vault *cptr){
     static int nrCust = 1;
-    int nrItems; 
+    //int nrItems; 
     cout << "Enter data for Customer #" << nrCust << ": \n";
     cout << "Name: ";
-    cin.ignore(10000, '\n');
+    cin.ignore();
     getline(cin, cptr -> name);
     cout << "Number of items in vault: ";
-    cin >> nrItems;
+    cin >> cptr -> nrItems;
 
-    cptr -> items = new string[nrItems];
-    for (int i = 0; i < nrItems; i++){
+    //cptr -> items = new string[cptr -> nrItems];
+    cin.ignore();
+    for (int i = 0; i < cptr -> nrItems; i++){
         cout << "Enter Item #" << i + 1 << ": ";
-        cin >> cptr -> items[i];
+        getline(cin, cptr -> items[i]);
     }
     cout << endl;
     nrCust++;
 }
 
-/*
 void displayVaults(Vault *cptr) {
-    cout << "Customer summary:\n";
-    cout << "Name: " << cptr->name << endl;
-    for (int i = 0; i < ; i++)
+    static int count = 1;
+    cout << "Customer #" << count << " summary:\n";
+    cout << "Name: " << cptr -> name << endl;
+    for (int i = 0; i < cptr -> nrItems; i++)
         cout << "Item #" << i + 1 << ": " 
-             << cptr->grades[i] << endl;
-    cout << endl << endl;
+             << cptr -> items[i] << endl;
+    cout << endl;
 } 
-*/
+
