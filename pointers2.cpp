@@ -36,9 +36,16 @@ int main(){
 
 void inputUser(Vault *cptr){
     static int nrCust = 1;
+    int nrItems; 
     cout << "Enter data for Customer #" << nrCust << ": \n";
     cout << "Name: ";
     getline(cin, cptr -> name);
+    cout << "Number of items in vault: ";
+    cin >> nrItems;
     
+    for (int i = 0; i < nrItems; i++){
+        cout << "Enter Item #" << i + 1 << ": ";
+        cptr -> items[i];
+    }
 }
 
