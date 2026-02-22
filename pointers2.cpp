@@ -42,10 +42,22 @@ void inputUser(Vault *cptr){
     getline(cin, cptr -> name);
     cout << "Number of items in vault: ";
     cin >> nrItems;
-    
+
+    cptr -> items = new int[nrItems];
     for (int i = 0; i < nrItems; i++){
         cout << "Enter Item #" << i + 1 << ": ";
         cptr -> items[i];
     }
+    nrCust++;
 }
 
+/*
+void displayVaults(Vault *cptr) {
+    cout << "Customer summary:\n";
+    cout << "Name: " << cptr->name << endl;
+    for (int i = 0; i < ; i++)
+        cout << "Item #" << i + 1 << ": " 
+             << cptr->grades[i] << endl;
+    cout << endl << endl;
+} 
+*/
