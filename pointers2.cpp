@@ -8,7 +8,7 @@ using namespace std;
 struct Vault{
     string name;
     int nrItems;
-    string *items = new string [nrItems];
+    string *items;
     //destructor for items
     ~Vault(){
         if (items)
@@ -24,6 +24,14 @@ int main(){
     int numVaults;
     cout << "Enter amount of vaults actively in use: ";
     cin >> numVaults;
+    
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "invalid entry.\n";
+        cout << "Number of items in vault: ";
+        cin >> numVaults;
+    }
     //dynamic array for Vault objects
     Vault *roster = new Vault[numVaults];
 
@@ -42,16 +50,23 @@ int main(){
 }
 
 void inputUser(Vault *cptr){
+    //taking user information for vault details
     static int nrCust = 1;
-    //int nrItems; 
     cout << "Enter data for Customer #" << nrCust << ": \n";
     cout << "Name: ";
     cin.ignore();
     getline(cin, cptr -> name);
     cout << "Number of items in vault: ";
     cin >> cptr -> nrItems;
+    while (cin.fail()){
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "invalid entry.\n";
+        cout << "Number of items in vault: ";
+        cin >> cptr -> nrItems;
+    }
 
-    //cptr -> items = new string[cptr -> nrItems];
+    cptr -> items = new string[cptr -> nrItems];
     cin.ignore();
     for (int i = 0; i < cptr -> nrItems; i++){
         cout << "Enter Item #" << i + 1 << ": ";
@@ -69,5 +84,6 @@ void displayVaults(Vault *cptr) {
         cout << "Item #" << i + 1 << ": " 
              << cptr -> items[i] << endl;
     cout << endl;
+    count++;
 } 
 
