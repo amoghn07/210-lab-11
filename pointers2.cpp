@@ -16,3 +16,18 @@ struct Vault{
     }
 };
 
+void inputUser(Vault *);
+void outputStudent(Vault *);
+
+int main(){
+    int numVaults;
+    Vault *roster;
+    cout << "Enter amount of vaults actively in use: ";
+    cin >> numVaults;
+
+    for (int i = 0; i < numVaults; i++){
+
+    }
+
+}
+
