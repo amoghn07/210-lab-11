@@ -7,7 +7,7 @@ using namespace std;
 
 struct Vault{
     string name;
-    int *items;
+    string *items;
     //destructor for items
     ~Vault(){
         if (items)
@@ -39,15 +39,17 @@ void inputUser(Vault *cptr){
     int nrItems; 
     cout << "Enter data for Customer #" << nrCust << ": \n";
     cout << "Name: ";
+    cin.ignore(10000, '\n');
     getline(cin, cptr -> name);
     cout << "Number of items in vault: ";
     cin >> nrItems;
 
-    cptr -> items = new int[nrItems];
+    cptr -> items = new string[nrItems];
     for (int i = 0; i < nrItems; i++){
         cout << "Enter Item #" << i + 1 << ": ";
-        cptr -> items[i];
+        cin >> cptr -> items[i];
     }
+    cout << endl;
     nrCust++;
 }
 
