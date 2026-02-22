@@ -8,7 +8,7 @@ using namespace std;
 struct Vault{
     string name;
     int *items;
-
+    //destructor for items
     ~Vault(){
         if (items)
             delete [] items;
@@ -21,13 +21,24 @@ void outputStudent(Vault *);
 
 int main(){
     int numVaults;
-    Vault *roster;
     cout << "Enter amount of vaults actively in use: ";
     cin >> numVaults;
+    //dynamic array for Vault objects
+    Vault *roster = new Vault[numVaults];
 
     for (int i = 0; i < numVaults; i++){
-
+        inputUser(&roster[i]);
     }
 
+    return 0;
+
+}
+
+void inputUser(Vault *cptr){
+    static int nrCust = 1;
+    cout << "Enter data for Customer #" << nrCust << ": \n";
+    cout << "Name: ";
+    getline(cin, cptr -> name);
+    
 }
 
